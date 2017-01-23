@@ -3,7 +3,7 @@
     <head>
       <body>
 
-        <form action="new-thing" method="post">
+        <form action="store" method="POST">
 
           <table border="0" align="center">
 
@@ -66,6 +66,7 @@
             <tr>
               <td>Company Phone Number</td>
               <td align="center"><input type="text" name="compPhone" size="30" /></td>
+              <td><input type="hidden" name="_token" value="{{ csrf_token() }}"></td>
             </tr>
           </table></br>
           <div align="center">
