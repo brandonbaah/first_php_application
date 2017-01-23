@@ -14,7 +14,8 @@ class CustomerController extends Controller
    }
 
    public function profile($id){
-     $customer = DB::table('Customers')->select('id')->get($id);
+     $customer = DB::table('customers')->where('id', '$id')->first();
+     echo $customer;
      return view('customers.profile')->withCustomer($customer);
    }
 
@@ -40,9 +41,38 @@ class CustomerController extends Controller
           $customer->comp_city_state_zip = $request->comp_city_state_zip;
           $customer->comp_phone = $request->comp_phone;
 
+          // $this->validate($request, [
+          //   'first_name' => 'required|unique:customers|max:255',
+          //   'last_name' => 'required',
+          //   'address_1' => 'required',
+          //   'address_2' => 'bail|required',
+          //   'city_state_zip' => 'required',
+          //   'contact_phone' => 'required',
+          //   'email' => 'required|unique:customers',
+          //   'comp_name' => 'required',
+          //   'comp_address' => 'required',
+          //   'comp_city_state_zip' => 'required',
+          //   'comp_phone' => 'required|unique:customers'
+          // ]);
+
           $customer->save();
 
+          return ('Data was stored in database!');
           // return redirect()->route('customers.profile', $customer->id);
+    }
 
+    // public function edit($id){
+    //   $customer = DB::table('customers')->where('id', '$id')-> ->update([);
+    //
+    // }
+
+    public function approvedtoggle($id, $request){
+      $customer = DB::table('users')->where('id', '$id')->update(['approved' => true]);
+      if ($customer->approved === null || false) {
+        $customer->approved = true;
+      } else{
+        $customer->approved = false;
+      }
+        $customer->save();  
     }
 }

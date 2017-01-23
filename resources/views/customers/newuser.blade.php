@@ -2,6 +2,16 @@
 <html lang="en">
     <head>
       <body>
+        <h5>All fields required for submission ***</h5>
+
+        <div align="center">
+          <h3>
+            Rebate Signup!!!!</br>
+            <h4>
+              Complete this to receive your guaranteed rebate.
+            </h4>
+          </h3></br>
+        </div>
 
         <form action="store" method="POST">
 
@@ -72,7 +82,14 @@
           <div align="center">
               <input type="submit">
           </div>
-        </form>
+        </form></br>
+        <div align="center">
+          <form action="/files" method="POST" enctype="multipart/form-data">
+            <input type="file" name="newfile" value="">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+            <button type="submit">Save File</button>
+          </form>
+      </div>
     </body>
   </head>
 </html>
