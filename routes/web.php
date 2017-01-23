@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('user/{id}', 'CustomerController@profile');
 Route::get('index', 'CustomerController@index');
-Route::get('new', 'CustomerController@new');
+Route::get('newuser', 'CustomerController@newuser');
 Route::post('store', 'CustomerController@store');
