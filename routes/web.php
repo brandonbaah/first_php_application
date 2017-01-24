@@ -15,10 +15,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-//Route for Showing one user
-Route::get('user/{id}', 'CustomerController@profile');
-//Route to show all users
-Route::get('index', 'CustomerController@index');
+
 //Route to enter information for new user
 Route::get('newuser', 'CustomerController@newuser');
 //Route responsible for creating new user
@@ -38,6 +35,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('admin', function () {
-    echo 'Access granted Oh wise one';
-})->middleware('admin');
+//Middleware for User Authentication
+Route::group(['middleware' => ['auth']], function() {
+  //Route for Showing one user
+  Route::get('user/{id}', 'CustomerController@profile');
+  //Route to show all users
+  Route::get('index', 'CustomerController@index');
+});

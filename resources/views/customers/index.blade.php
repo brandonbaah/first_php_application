@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<a href="/home" class="btn btn-primary">Back to Dashboard</a>
   <div align="center">
     <h3>
       Customers
@@ -19,6 +20,7 @@
           <th>Company City/State/Zip</th>
           <th>Company Phone</th>
           <th>View</th>
+
         </thead>
         <tbody>
 
@@ -31,11 +33,9 @@
               <td>{{$customer->email}}</td>
               <td>{{$customer->comp_city_state_zip}}</td>
               <td>{{$customer->comp_phone}}</td>
-              <td><a href="#" class="btn btn-default">View</a> <a href="#" class="btn btn-default">Edit</a></td>
+              <td><a href="#" class="btn btn-primary">View</a> <a href="#" class="btn btn-success">Edit</a> <a href="#" class="btn btn-primary">Approve</a></td>
             </tr>
           @endforeach
-
-
         </tbody>
       </table>
     </div>
