@@ -1,14 +1,19 @@
+@extends('layouts.app')
+
+@section('content')
+<a href="/index" class="btn btn-primary">Back to Users</a>
 <div align="center">
-<h3>{{$customer->comp_name}}</h3>
+<h3><strong>{{$customer->comp_name}}</strong></h3>
 </div>
 
-{{$customer->first_name}}
-{{$customer->last_name}}
-{{$customer->address_1}}
-{{$customer->address_2}}
-{{$customer->city_state_zip}}
-{{$customer->contact_phone}}
-{{$customer->email}}
-{{$customer->comp_address}}
-{{$customer->comp_city_state_zip}}
-{{$customer->comp_phone}}
+<ul><strong>First Name:</strong> {{$customer->first_name}}</ul>
+<ul><strong>Last Name:</strong> {{$customer->last_name}}</ul>
+<ul><strong>Address:</strong> {{$customer->address_1}}</ul>
+<ul><strong>Address 2:</strong> {{$customer->address_2}}</ul>
+<ul><strong>City/State/Zip:</strong> {{$customer->city_state_zip}}</ul>
+<ul><strong>Contact Phone:</strong> {{$customer->contact_phone}}</ul>
+<ul><strong>Email:</strong> {{$customer->email}}</ul>
+<ul><strong>Company Address:</strong> {{$customer->comp_address}}</ul>
+<ul><strong>Company City/State/Zip:</strong> {{$customer->comp_city_state_zip}}</ul>
+<ul><strong>Company Phone:</strong> {{$customer->comp_phone}}</ul>
+@endsection

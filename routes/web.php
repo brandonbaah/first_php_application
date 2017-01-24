@@ -20,10 +20,6 @@ Route::get('/', function () {
 Route::get('newuser', 'CustomerController@newuser');
 //Route responsible for creating new user
 Route::post('store', 'CustomerController@store');
-//Route to enter updated information
-Route::put('/user/{id}/edit', 'CustomerController@edit');
-//Route responsible for updating user information
-Route::get('user/{id}', 'CustomerController@update');
 
 //Route responsible for file upload
 Route::post('files', function(){
@@ -41,4 +37,6 @@ Route::group(['middleware' => ['auth']], function() {
   Route::get('user/{id}', 'CustomerController@profile');
   //Route to show all users
   Route::get('index', 'CustomerController@index');
+  //Route responsible for updating user information
+  Route::patch('/user/{customer}/approved', 'CustomerController@approvedtoggle');
 });

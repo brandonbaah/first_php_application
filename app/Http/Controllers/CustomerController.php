@@ -14,8 +14,7 @@ class CustomerController extends Controller
    }
 
    public function profile($id){
-     $customer = DB::table('customers')->where('id', '$id')->first();
-     echo $customer;
+     $customer = DB::table('customers')->where('id', '=', $id)->first();
      return view('customers.profile')->withCustomer($customer);
    }
 
@@ -40,6 +39,7 @@ class CustomerController extends Controller
           $customer->comp_address = $request->comp_address;
           $customer->comp_city_state_zip = $request->comp_city_state_zip;
           $customer->comp_phone = $request->comp_phone;
+
 
           // $this->validate($request, [
           //   'first_name' => 'required|unique:customers|max:255',
@@ -66,13 +66,17 @@ class CustomerController extends Controller
     //
     // }
 
-    public function approvedtoggle($id, $request){
-      $customer = DB::table('users')->where('id', '$id')->update(['approved' => true]);
-      if ($customer->approved === null || false) {
-        $customer->approved = true;
+    public function approvedtoggle($customer){
+      if ($customer->approved == 1) {
+        $customer->approved = 2;
+        $customer->update(['approved' => $customer->approved]);
+        flash('User Rebate Approved! Awaiting Accounting Approval', 'success');
+        return redirect ('customers.index');
       } else{
-        $customer->approved = false;
+        $customer->approved = 2;
+        $customer->update(['approved' => $customer->approved]);
+        flash('Rebate approval status changed to pending! Awaiting Admin Approval.', 'warning');
+        return redirect ('customers.index');
       }
-        $customer->save();
     }
 }

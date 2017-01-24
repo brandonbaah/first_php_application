@@ -19,21 +19,30 @@
           <th>Email Address</th>
           <th>Company City/State/Zip</th>
           <th>Company Phone</th>
-          <th>View</th>
+          <th>Status</th>
+          <th>Actions</th>
+          <th></th>
 
         </thead>
         <tbody>
 
           @foreach ($customers as $customer)
             <tr>
-              <td>{{$customer->comp_name}}</td>
-              <td>{{$customer->first_name}}</td>
-              <td>{{$customer->last_name}}</td>
-              <td>{{$customer->contact_phone}}</td>
-              <td>{{$customer->email}}</td>
-              <td>{{$customer->comp_city_state_zip}}</td>
-              <td>{{$customer->comp_phone}}</td>
-              <td><a href="#" class="btn btn-primary">View</a> <a href="#" class="btn btn-success">Edit</a> <a href="#" class="btn btn-primary">Approve</a></td>
+              <td><h5>{{$customer->comp_name}}</h5></td>
+              <td><h5>{{$customer->first_name}}</h5></td>
+              <td><h5>{{$customer->last_name}}</h5></td>
+              <td><h5>{{$customer->contact_phone}}</h5></td>
+              <td><h5>{{$customer->email}}</h5></td>
+              <td><h5>{{$customer->comp_city_state_zip}}</h5></td>
+              <td><h5>{{$customer->comp_phone}}</h5></td>
+              <td><h5>{{$customer->approved == 1 ? 'Pending' : 'Approved'}}</h5></td>
+              <td><a href="user/{{$customer->id}}" class="btn btn-primary">View</a></td>
+              <td><form action="/user/{{$customer->id}}/approved" method="PATCH">
+                <div align="center">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                <button type="submit" class="btn btn-xs btn-white">{{$customer->approved == 2 ? 'Mark Pending' : 'Mark Approved'}}</button>
+                </div>
+              </form></td>
             </tr>
           @endforeach
         </tbody>
