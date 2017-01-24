@@ -56,8 +56,8 @@ class CustomerController extends Controller
           // ]);
 
           $customer->save();
-
-          return ('Data was stored in database!');
+          flash()->overlay('Thank You for your rebate submission', 'Rebate Hero');
+          return redirect ('/');
           // return redirect()->route('customers.profile', $customer->id);
     }
 
@@ -73,6 +73,6 @@ class CustomerController extends Controller
       } else{
         $customer->approved = false;
       }
-        $customer->save();  
+        $customer->save();
     }
 }

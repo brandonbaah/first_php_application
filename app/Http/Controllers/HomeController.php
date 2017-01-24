@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        flash('Welcome Aboard!', 'success');
         return view('home');
     }
 }

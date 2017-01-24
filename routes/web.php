@@ -37,3 +37,7 @@ Route::post('files', function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('admin', function () {
+    echo 'Access granted Oh wise one';
+})->middleware('admin');

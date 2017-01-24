@@ -1,13 +1,11 @@
-<!DOCTYPE html>
 @extends('layouts.app')
-<html lang="en">
-    <head>
-      <body>
+
+@section('content')
         <h5>All fields required for submission ***</h5>
 
         <div align="center">
           <h3>
-            Rebate Signup!!!!</br>
+            Rebate Hero</br>
             <h4>
               Complete this to receive your guaranteed rebate.
             </h4>
@@ -84,13 +82,11 @@
               <input type="submit">
           </div>
         </form></br>
-        <div align="center">
           <form action="/files" method="POST" enctype="multipart/form-data">
+            <div align="center">
             <input type="file" name="newfile" value="">
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
             <button type="submit">Save File</button>
+          </div>
           </form>
-      </div>
-    </body>
-  </head>
-</html>
+@endsection
