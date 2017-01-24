@@ -33,3 +33,7 @@ Route::post('files', function(){
   request()->file('file')->store('files');
   return back();
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
