@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Auth;
+use Image;
 
 
 class CustomerController extends Controller
@@ -41,23 +43,23 @@ class CustomerController extends Controller
           $customer->comp_phone = $request->comp_phone;
 
 
-          // $this->validate($request, [
-          //   'first_name' => 'required|unique:customers|max:255',
-          //   'last_name' => 'required',
-          //   'address_1' => 'required',
-          //   'address_2' => 'bail|required',
-          //   'city_state_zip' => 'required',
-          //   'contact_phone' => 'required',
-          //   'email' => 'required|unique:customers',
-          //   'comp_name' => 'required',
-          //   'comp_address' => 'required',
-          //   'comp_city_state_zip' => 'required',
-          //   'comp_phone' => 'required|unique:customers'
-          // ]);
+          $this->validate($request, [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'address_1' => 'required',
+            'address_2' => 'required',
+            'city_state_zip' => 'required',
+            'contact_phone' => 'required|min:10',
+            'email' => 'required|unique:customers,email',
+            'comp_name' => 'required',
+            'comp_address' => 'required',
+            'comp_city_state_zip' => 'required',
+            'comp_phone' => 'required'
+          ]);
 
           $customer->save();
           flash()->overlay('Thank You for your rebate submission', 'Rebate Hero');
-          return redirect ('/');
+          return view('customers.profile')->withCustomer($customer);
           // return redirect()->route('customers.profile', $customer->id);
     }
 
@@ -66,7 +68,8 @@ class CustomerController extends Controller
     //
     // }
 
-    public function approvedtoggle($customer){
+    public function approvedtoggle($id){
+      $customer = DB::table('customers')->where('id', '=', $id)->first();
       if ($customer->approved == 1) {
         $customer->approved = 2;
         $customer->update(['approved' => $customer->approved]);
@@ -77,6 +80,18 @@ class CustomerController extends Controller
         $customer->update(['approved' => $customer->approved]);
         flash('Rebate approval status changed to pending! Awaiting Admin Approval.', 'warning');
         return redirect ('customers.index');
+      }
+    }
+
+    public function upload(Request $request, $id){
+      if($request->hasFile('file')){
+        $file = $request->file('file');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        Image::make($file)->save(public_path('uploads/files/' . $filename));
+        $customer = DB::table('customers')->where('id', '=', $id)->first();
+        $customer->file=$filename;
+        $customer->save();
+        return redirect('/');
       }
     }
 }

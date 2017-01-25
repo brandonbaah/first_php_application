@@ -16,4 +16,16 @@
 <ul><strong>Company Address:</strong> {{$customer->comp_address}}</ul>
 <ul><strong>Company City/State/Zip:</strong> {{$customer->comp_city_state_zip}}</ul>
 <ul><strong>Company Phone:</strong> {{$customer->comp_phone}}</ul>
+
+</br>
+</br>
+</br>
+</br>
+<form action="/user/{{$customer->id}}/files" method="POST" enctype="multipart/form-data">
+  <div align="center">
+  <input type="file" name="newfile" value="">
+  <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+  <button type="submit">Save File</button>
+</div>
+</form>
 @endsection

@@ -10,7 +10,7 @@
                 <div class="panel-body">
                     You are logged in!
                       <div class="links" align="center">
-                      <a href="newuser">Go to Users</a>
+                      <a href="index">Go to Users</a>
                     </div>
                 </div>
             </div>
