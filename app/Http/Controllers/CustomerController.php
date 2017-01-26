@@ -41,7 +41,7 @@ class CustomerController extends Controller
           $customer->comp_address = $request->comp_address;
           $customer->comp_city_state_zip = $request->comp_city_state_zip;
           $customer->comp_phone = $request->comp_phone;
-          
+
 
 
           $this->validate($request, [
@@ -55,18 +55,14 @@ class CustomerController extends Controller
             'comp_name' => 'required',
             'comp_address' => 'required',
             'comp_city_state_zip' => 'required',
-            'comp_phone' => 'required'
+            'comp_phone' => 'required',
+            'g-recaptcha-response' => 'required|captcha'
           ]);
 
           $customer->save();
           return view('customers.profile')->withCustomer($customer);
           // return redirect()->route('customers.profile', $customer->id);
     }
-
-    // public function edit($id){
-    //   $customer = DB::table('customers')->where('id', '$id')-> ->update([);
-    //
-    // }
 
     public function approvedtoggle($id){
       $customer = DB::table('customers')->where('id', '=', $id)->first();
