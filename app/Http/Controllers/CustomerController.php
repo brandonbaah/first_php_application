@@ -61,7 +61,6 @@ class CustomerController extends Controller
 
           $customer->save();
           return view('customers.profile')->withCustomer($customer);
-          // return redirect()->route('customers.profile', $customer->id);
     }
 
     public function approvedtoggle($id){
@@ -75,7 +74,6 @@ class CustomerController extends Controller
         $customer->update(['approved' => $customer->approved]);
         flash('Rebate approval status changed to pending! Awaiting Admin Approval.', 'warning');
       }
-
     }
 
     public function upload(Request $request, $id){
@@ -84,7 +82,7 @@ class CustomerController extends Controller
         $filename = time() . '.' . $file->getClientOriginalExtension();
         Image::make($file)->save(public_path('uploads/files/' . $filename));
         $customer = DB::table('customers')->where('id', '=', $id)->first();
-        $customer->file=$filename;
+        $customer->file = $filename;
         $customer->save();
         return redirect('/');
       }
