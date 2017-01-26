@@ -37,6 +37,11 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group">
+                          <div class="col-md-6 col-md-offset-4">
+                            {!! app('captcha')->display(); !!}
+                          </div>
+                        </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>

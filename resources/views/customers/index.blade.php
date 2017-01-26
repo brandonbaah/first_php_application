@@ -37,12 +37,14 @@
               <td><h5>{{$customer->comp_phone}}</h5></td>
               <td><h5>{{$customer->approved == 1 ? 'Pending' : 'Approved'}}</h5></td>
               <td><a href="user/{{$customer->id}}" class="btn btn-primary">View</a></td>
-              <td><form action="/user/{{$customer->id}}/approved" method="PATCH">
-                <div align="center">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                <button type="submit" class="btn btn-xs btn-white">{{$customer->approved == 2 ? 'Mark Pending' : 'Mark Approved'}}</button>
-                </div>
-              </form></td>
+              <td>
+                <form action="/user/{{$customer->id}}/approved" method="put">
+                  <div align="center">
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                  <button type="submit" class="btn btn-xs btn-white">{{$customer->approved == 2 ? 'Mark Pending' : 'Mark Approved'}}</button>
+                  </div>
+                </form>
+              </td>
             </tr>
           @endforeach
         </tbody>

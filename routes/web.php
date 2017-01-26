@@ -26,7 +26,7 @@ Route::post('/store', 'CustomerController@store');
 //Route for Showing one user
 Route::get('/user/{id}', 'CustomerController@profile');
 //Route responsible for file upload
-Route::post('/user/{id}/files', 'CustomerController@upload');
+Route::patch('/user/{id}/files', 'CustomerController@upload');
 
 Auth::routes();
 
@@ -37,5 +37,8 @@ Route::group(['middleware' => ['auth']], function() {
   //Route to show all users
   Route::get('/index', 'CustomerController@index');
   //Route responsible for updating user information
-  Route::patch('/user/{id}/approved', 'CustomerController@approvedtoggle');
+  Route::put('/user/{id}/approved', [
+    'as' => 'customers.approvedtoggle',
+    'uses' => 'App\CustomerController@approvedtoggle',
+  ]);
 });

@@ -11,7 +11,7 @@
             </h4>
           </h3></br>
         </div>
-        
+
 
         <form action="store" method="POST">
 
@@ -83,4 +83,10 @@
               <input type="submit">
           </div>
         </form></br>
+
+        <div class="form-group">
+          <div class="col-md-6 col-md-offset-4">
+            {!! app('captcha')->display(); !!}
+          </div>
+        </div>
 @endsection

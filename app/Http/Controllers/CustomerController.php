@@ -41,6 +41,7 @@ class CustomerController extends Controller
           $customer->comp_address = $request->comp_address;
           $customer->comp_city_state_zip = $request->comp_city_state_zip;
           $customer->comp_phone = $request->comp_phone;
+          
 
 
           $this->validate($request, [
@@ -58,7 +59,6 @@ class CustomerController extends Controller
           ]);
 
           $customer->save();
-          flash()->overlay('Thank You for your rebate submission', 'Rebate Hero');
           return view('customers.profile')->withCustomer($customer);
           // return redirect()->route('customers.profile', $customer->id);
     }
@@ -74,13 +74,12 @@ class CustomerController extends Controller
         $customer->approved = 2;
         $customer->update(['approved' => $customer->approved]);
         flash('User Rebate Approved! Awaiting Accounting Approval', 'success');
-        return redirect ('customers.index');
       } else{
         $customer->approved = 2;
         $customer->update(['approved' => $customer->approved]);
         flash('Rebate approval status changed to pending! Awaiting Admin Approval.', 'warning');
-        return redirect ('customers.index');
       }
+
     }
 
     public function upload(Request $request, $id){

@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="/index" class="btn btn-primary">Back to Users</a>
+@if (Auth::check())
+  <a href="/index" class="btn btn-primary">Back to Users</a>
+@endif
 <div align="center">
 <h3><strong>{{$customer->comp_name}}</strong></h3>
 </div>
@@ -21,11 +23,11 @@
 </br>
 </br>
 </br>
-<form action="/user/{{$customer->id}}/files" method="POST" enctype="multipart/form-data">
+<form action="/user/{{$customer->id}}/files" method="PATCH" enctype="multipart/form-data">
   <div align="center">
-  <input type="file" name="newfile" value="">
-  <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-  <button type="submit">Save File</button>
-</div>
+    <input type="file" value="PATCH">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+    <button type="submit">Save File</button>
+  </div>
 </form>
 @endsection
