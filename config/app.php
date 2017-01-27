@@ -169,6 +169,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+        Spatie\Tail\TailServiceProvider::class,
 
         /*
          * Package Service Providers...

@@ -36,9 +36,7 @@ Route::get('/home', 'HomeController@index');
 Route::group(['middleware' => ['auth']], function() {
   //Route to show all users
   Route::get('/index', 'CustomerController@index');
-  //Route responsible for updating user information
-  Route::put('/user/{id}/approved', [
-    'as' => 'customers.approvedtoggle',
-    'uses' => 'App\CustomerController@approvedtoggle',
-  ]);
+  //Route responsible for customer approval
+  Route::get('/approve/{id}', 'CustomerController@approve');
+  Route::get('/unapprove/{id}', 'CustomerController@unapprove');
 });

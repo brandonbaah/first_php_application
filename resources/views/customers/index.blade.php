@@ -37,14 +37,11 @@
               <td><h5>{{$customer->comp_phone}}</h5></td>
               <td><h5>{{$customer->approved == 1 ? 'Pending' : 'Approved'}}</h5></td>
               <td><a href="user/{{$customer->id}}" class="btn btn-primary">View</a></td>
-              <td>
-                <form action="/user/{{$customer->id}}/approved" method="put">
-                  <div align="center">
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                  <button type="submit" class="btn btn-xs btn-white">{{$customer->approved == 2 ? 'Mark Pending' : 'Mark Approved'}}</button>
-                  </div>
-                </form>
-              </td>
+              @if($customer->approved == 1)
+                <td><a href="/approve/{{$customer->id}}" class="btn btn-success">Mark Approved</a></td>
+              @else
+                <td><a href="/unapprove/{{$customer->id}}" class="btn btn-danger">Mark Pending</a></td>
+              @endif
             </tr>
           @endforeach
         </tbody>

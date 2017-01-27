@@ -63,17 +63,16 @@ class CustomerController extends Controller
           return view('customers.profile')->withCustomer($customer);
     }
 
-    public function approvedtoggle($id){
-      $customer = DB::table('customers')->where('id', '=', $id)->first();
-      if ($customer->approved == 1) {
-        $customer->approved = 2;
-        $customer->update(['approved' => $customer->approved]);
-        flash('User Rebate Approved! Awaiting Accounting Approval', 'success');
-      } else{
-        $customer->approved = 2;
-        $customer->update(['approved' => $customer->approved]);
-        flash('Rebate approval status changed to pending! Awaiting Admin Approval.', 'warning');
-      }
+    public function approve($id){
+        DB::table('customers')->where('id', $id)->update(['approved' => 2]);
+        flash('Customer Rebate Approved! Awaiting Accounting Approval', 'success');
+        return redirect('/index');
+    }
+
+    public function unapprove($id){
+        DB::table('customers')->where('id', $id)->update(['approved' => 1]);
+        flash('Customer Rebate Marked as Pending', 'danger');
+        return redirect('/index');
     }
 
     public function upload(Request $request, $id){

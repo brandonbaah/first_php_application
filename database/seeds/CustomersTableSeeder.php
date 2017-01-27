@@ -23,7 +23,8 @@ class CustomersTableSeeder extends Seeder
            'comp_name' => 'Loop',
            'comp_address' => '11 Park Place',
            'comp_city_state_zip' => 'New York, NY',
-           'comp_phone' => '(212) 210-3822'
+           'comp_phone' => '(212) 210-3822',
+           'approved' => 2
         ],
 
         [
@@ -37,7 +38,8 @@ class CustomersTableSeeder extends Seeder
            'comp_name' => 'Yelp',
            'comp_address' => '232 Bitmap St',
            'comp_city_state_zip' => 'Envinmt, KY',
-           'comp_phone' => '(932) 422-3822'
+           'comp_phone' => '(932) 422-3822',
+           'approved' => 1
         ],
 
         [
@@ -52,8 +54,9 @@ class CustomersTableSeeder extends Seeder
            'comp_address' => '392 Hyphen St',
            'comp_city_state_zip' => 'Isals, MA',
            'comp_phone' => '(722) 422-3822'
+           'approved' => 1
         ]
-        
+
      ]);
   }
 }
