@@ -35,7 +35,7 @@
             </tr>
 
             <tr>
-              <td>Address 2(apt/bldg)</td>
+              <td>Address 2 (apt/bldg) </td>
               <td align="center"><input type="text" name="address_2" size="30" /></td>
             </tr>
 
@@ -84,9 +84,5 @@
           </div>
         </form></br>
 
-        <div class="form-group">
-          <div class="col-md-6 col-md-offset-4">
-            {!! app('captcha')->display(); !!}
-          </div>
         </div>
 @endsection

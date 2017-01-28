@@ -11,8 +11,10 @@ use Image;
 class CustomerController extends Controller
 {
    public function index(){
-     $customers = DB::table('Customers')->select('*')->get();
-     return view('customers.index')->withCustomers($customers);
+     $customers = DB::table('customers')->select('*')->get();
+     $approved_customers = DB::table('customers')->where('approved', 2)->get();
+     $unapproved_customers = DB::table('customers')->where('approved', 1)->get();
+     return view('customers.index', compact('customers', 'approved_customers', 'unapproved_customers'));
    }
 
    public function profile($id){
@@ -56,7 +58,7 @@ class CustomerController extends Controller
             'comp_address' => 'required',
             'comp_city_state_zip' => 'required',
             'comp_phone' => 'required',
-            'g-recaptcha-response' => 'required|captcha'
+
           ]);
 
           $customer->save();
@@ -69,10 +71,36 @@ class CustomerController extends Controller
         return redirect('/index');
     }
 
+    public function approve_all(){
+      DB::table('customers')->where('approved', 1)->update(['approved' => 2]);
+      flash('All Pending Customers Marked Approved! Awaiting Accounting Approval', 'success');
+      return redirect('/index');
+    }
+
     public function unapprove($id){
         DB::table('customers')->where('id', $id)->update(['approved' => 1]);
         flash('Customer Rebate Marked as Pending', 'danger');
         return redirect('/index');
+    }
+
+    public function approved_index(){
+      $customers = DB::table('customers')->select('*')->get();
+      $approved_customers = DB::table('customers')->where('approved', 2)->get();
+      $unapproved_customers = DB::table('customers')->where('approved', 1)->get();
+      return view('customers.approved_index', compact('customers', 'approved_customers', 'unapproved_customers'));
+    }
+
+    public function unapprove_all(){
+      DB::table('customers')->where('approved', 2)->update(['approved' => 1]);
+      flash('All Approved Customers Marked Pending!', 'warning');
+      return redirect('/index');
+    }
+
+    public function unapproved_index(){
+      $customers = DB::table('customers')->select('*')->get();
+      $approved_customers = DB::table('customers')->where('approved', 2)->get();
+      $unapproved_customers = DB::table('customers')->where('approved', 1)->get();
+      return view('customers.unapproved_index', compact('customers', 'approved_customers', 'unapproved_customers'));
     }
 
     public function upload(Request $request, $id){
@@ -80,10 +108,8 @@ class CustomerController extends Controller
         $file = $request->file('file');
         $filename = time() . '.' . $file->getClientOriginalExtension();
         Image::make($file)->save(public_path('uploads/files/' . $filename));
-        $customer = DB::table('customers')->where('id', '=', $id)->first();
-        $customer->file = $filename;
-        $customer->save();
-        return redirect('/');
+        DB::table('customers')->where('id', $id)->update(['file' => $filename]);
       }
+      return redirect('/');
     }
 }

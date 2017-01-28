@@ -38,5 +38,11 @@ Route::group(['middleware' => ['auth']], function() {
   Route::get('/index', 'CustomerController@index');
   //Route responsible for customer approval
   Route::get('/approve/{id}', 'CustomerController@approve');
+  //Route responsible for customer unapproval
   Route::get('/unapprove/{id}', 'CustomerController@unapprove');
+
+  Route::get('/approved_index', 'CustomerController@approved_index');
+  Route::get('/unapproved_index', 'CustomerController@unapproved_index');
+  Route::get('/approve_all', 'CustomerController@approve_all');
+  Route::get('/unapprove_all', 'CustomerController@approve_all');
 });
