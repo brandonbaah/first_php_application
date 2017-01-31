@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 @section('content')
         <h5>All fields required for submission ***</h5>
@@ -83,6 +84,9 @@
               <input type="submit">
           </div>
         </form></br>
-
-        </div>
+        <div class="form-group">
+          <div class="col-md-6 col-md-offset-4">
+            <div class="g-recaptcha" data-sitekey="6Le8wRMUAAAAAPZzgBc6VI6tQuhil6ymVh1lBJ7O"></div>
+          </div>
+      </div>
 @endsection

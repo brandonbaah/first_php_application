@@ -2,7 +2,7 @@
 
 @section('content')
 <a href="/index" class="btn btn-primary">Back to Index</a>
-<a href="/unapproved_index" class="btn btn-primary">Go to Unapproved</a></br></br>
+<a href="/unapproved_index" class="btn btn-primary">Go to Pending</a></br></br>
 @if ($approved_customers -> count() >= 1)
   <a href="/approve_all" class="btn btn-danger">Mark All Pending</a>
 @endif

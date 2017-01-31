@@ -57,8 +57,7 @@ class CustomerController extends Controller
             'comp_name' => 'required',
             'comp_address' => 'required',
             'comp_city_state_zip' => 'required',
-            'comp_phone' => 'required',
-
+            'comp_phone' => 'required'
           ]);
 
           $customer->save();
@@ -104,11 +103,12 @@ class CustomerController extends Controller
     }
 
     public function upload(Request $request, $id){
-      if($request->hasFile('file')){
-        $file = $request->file('file');
+      echo "upload here";
+      if($request->hasFile('user_file')){
+        $file = $request->file('user_file');
         $filename = time() . '.' . $file->getClientOriginalExtension();
         Image::make($file)->save(public_path('uploads/files/' . $filename));
-        DB::table('customers')->where('id', $id)->update(['file' => $filename]);
+        $customer = DB::table('customers')->where('id', $id)->update(['file' => $filename]);
       }
       return redirect('/');
     }

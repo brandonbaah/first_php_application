@@ -26,11 +26,13 @@ Route::post('/store', 'CustomerController@store');
 //Route for Showing one user
 Route::get('/user/{id}', 'CustomerController@profile');
 //Route responsible for file upload
-Route::patch('/user/{id}/files', 'CustomerController@upload');
+Route::post('/user/{id}/files', 'CustomerController@upload');
+Route::get('/hero', 'CustomerController@hero');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
 
 //Middleware for User Authentication
 Route::group(['middleware' => ['auth']], function() {

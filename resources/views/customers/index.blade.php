@@ -3,7 +3,7 @@
 @section('content')
 <a href="/home" class="btn btn-primary">Back to Dashboard</a>
 <a href="/approved_index" class="btn btn-primary">Go to Approved</a>
-<a href="/unapproved_index" class="btn btn-primary">Go to Unapproved</a>
+<a href="/unapproved_index" class="btn btn-primary">Go to Pending</a>
   <div align="center">
     <h3>
       Customers
