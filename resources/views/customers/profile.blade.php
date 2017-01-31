@@ -29,18 +29,20 @@
   </br>
     @unless ($customer->file)
       @unless (Auth::check())
-      <h4>Please add your claim to recieve your rebate.<strong>If not included you will have to resubmit!</strong></h4>
-        <form action="/user/{{$customer->id}}/files" method="POST" enctype="multipart/form-data">
-          <div align="center">
-            <input type="file" name="user_file">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-            <button type="submit">Save File</button>
-          </div>
-        </form>
-        @else
         <div align="center">
-          <h3><strong>Please reach out to {{$customer->first_name}} to resend {{$customer->comp_name}}'s claim.</strong><br><h4>Cannot Process without attached claim file.</h4></h3>
+          <h4>Please add your claim to recieve your rebate.<strong>If not included you will have to resubmit!</strong></h4>
         </div>
+          <form action="/user/{{$customer->id}}/files" method="POST" enctype="multipart/form-data">
+            <div align="center">
+              <input type="file" name="user_file">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+              <button type="submit">Save File</button>
+            </div>
+          </form>
+        @else
+          <div align="center">
+            <h3><strong>Please reach out to {{$customer->first_name}} to resend {{$customer->comp_name}}'s claim.</strong><br><h4>Cannot Process without attached claim file.</h4></h3>
+          </div>
         @endif
     @endif
 @endsection

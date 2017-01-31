@@ -83,7 +83,11 @@
           <div align="center">
               <input type="submit">
           </div>
-        </form></br>
+        <div align="center">
+        </form>
+          <h4>Please ensure that you are human or you will not be able to submit your claim.</h4>
+        </div>
+        </br>
         <div class="form-group">
           <div class="col-md-6 col-md-offset-4">
             <div class="g-recaptcha" data-sitekey="6Le8wRMUAAAAAPZzgBc6VI6tQuhil6ymVh1lBJ7O"></div>

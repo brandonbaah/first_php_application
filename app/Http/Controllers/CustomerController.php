@@ -103,13 +103,16 @@ class CustomerController extends Controller
     }
 
     public function upload(Request $request, $id){
-      echo "upload here";
       if($request->hasFile('user_file')){
         $file = $request->file('user_file');
         $filename = time() . '.' . $file->getClientOriginalExtension();
         Image::make($file)->save(public_path('uploads/files/' . $filename));
         $customer = DB::table('customers')->where('id', $id)->update(['file' => $filename]);
       }
-      return redirect('/');
+      return redirect('/hero');
+    }
+
+    public function hero(){
+      return view('customers.hero');
     }
 }
